@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"    
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">    
+        <div class="container ">
+            <h:form>
+                <div class="wellcustom">
+                    <h:commandButton class="btn btn-primary btn-lg" value="Lưu" rendered="#{khachhangManagedBean.khachhangttListTemp.dachuanhoa!='Y'}"  action="#{khachhangManagedBean.capnhatthongtinkh(khachhangManagedBean.khachhangttListTemp)}"  />
+                </div> 
+ 
+            <div class="form-inline wellcustom text-center center-block">
+                <h:outputLabel class="noidung_red"   value="#{khachhangManagedBean.khachhangttListTemp.hoten}"/>
+                -
+                <h:outputLabel class="noidung_red" value="#{khachhangManagedBean.khachhangttListTemp.idKhachhang}"/>  
+            </div>
+           
+            <div class="wellcustom">
+                    <table border="0" class="table ">
+                        <tbody>
+                            <tr>
+                                <td class="col-lg-3">
+                                    <label style="min-width: 100px">Họ tên</label> 
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:inputText class="form-control" value="#{khachhangManagedBean.khachhangttListTemp.hoten}"/>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-3">
+                                    <label>Địa chỉ</label>
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:inputTextarea rows="3" class="form-control"  value="#{khachhangManagedBean.khachhangttListTemp.sonhaHientai}"/>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-3">
+                                    <label>Thành phố</label>
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:selectOneMenu   class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangttListTemp.tpHientai}" >
+                                        <f:selectItem itemLabel="--Chọn giá trị--"/>
+                                        <f:selectItems var="city" value="#{khachhangManagedBean.dscitylist}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" /> 
+                                        <f:ajax event="change" listener="#{khachhangManagedBean.laydsdistrictcity(khachhangManagedBean.khachhangttListTemp.tpHientai)}" render="quantt"/>
+                                    </h:selectOneMenu>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4">
+                                    <label>Quận huyện</label> 
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:selectOneMenu id="quantt"  class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangttListTemp.quanHientai}" >
+                                        <f:selectItem itemLabel="--Chọn giá trị--"/>
+                                        <f:selectItems var="district" value="#{khachhangManagedBean.dsdistrictcity}" itemValue="#{district.idDistrict}" itemLabel="#{district.districtName}" /> 	
+                                    </h:selectOneMenu> 
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-3">
+                                    <label>Điện thoại</label>
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:inputText class="form-control"  value="#{khachhangManagedBean.khachhangttListTemp.didong1}"/>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4">
+                                    <label>Số chứng minh</label> 
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:inputText class="form-control" value="#{khachhangManagedBean.khachhangttListTemp.sochungminh}"/>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4">
+                                    <label>Ngày cấp </label>
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:inputText id="ngaycapcmnd"  pt:placeholder="Ngày cấp CMND"  value="#{khachhangManagedBean.khachhangttListTemp.ngaycapCmnd}" class="form-control"  required="true" requiredMessage="Ngày cấp CMND không để trống" >
+                                        <f:convertDateTime pattern="dd/M/YYYY"/>
+                                    </h:inputText>   
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4">
+                                    <label>Nơi cấp:</label>
+                                </td>
+                                <td class="col-lg-9">
+                                    <h:selectOneMenu id="noicapgplx" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangttListTemp.idNoicapcmnd}" >
+                                        <f:selectItem itemLabel="--Chọn nơi cấp--"/>
+                                        <f:selectItems var="city" value="#{khachhangManagedBean.dscitylist}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" /> 	
+                                    </h:selectOneMenu>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4">
+                                    GPLX
+                                </td>
+                                <td class="col-lg-8">
+                                    <h:inputText class="form-control" value="#{khachhangManagedBean.khachhangttListTemp.giayPlx}"/>  
+                                </td>
+                                <td class="col-lg-1">*</td>
+                            </tr>
+                        </tbody>
+                    </table>
+             
+            </div>
+         </h:form>
+        </div>
+        
+    </ui:define>
+</ui:composition> 

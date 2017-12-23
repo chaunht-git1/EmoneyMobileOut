@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"    
+                xmlns:ui="http://java.sun.com/jsf/facelets"  template="/templates/default/main.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="content">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />     
+        <div class="container-fluid">
+        <h:form>
+            <div>
+                  <h:messages  showDetail="true"  />
+            </div>         
+           
+            <div class="row">
+               <div class="mobilewell">
+                     <span>
+                       <h:graphicImage value="../../resources/images/qrcode.png"  width="40px" height="40px" />  
+                     </span> 
+                     <h:commandLink    value="Xác minh/ Bổ sung CMND "   action="#{hoibaoManagedBean.chuyentrangdshoibao('C','success')}" > 
+                     </h:commandLink>
+
+                </div>
+                <div class="wellcustom" >
+                      <span>
+                       <h:graphicImage value="../../resources/images/timkiem.png"  width="40px" height="40px" />  
+                     </span> 
+                    <h:commandLink   value="Tìm kiếm biên nhận"  action="#{chinhamainManagedBean.chuyentrang('timkiemthongtinbiennhan')}" disabled="false" > 
+                    </h:commandLink>
+                </div>
+                
+                <div class="wellcustom">
+                     <span>
+                       <h:graphicImage value="../../resources/images/ireport.png"   width="40px" height="40px" />  
+                     </span> 
+                      <h:commandLink   value="Báo cáo cá nhân"    action="#{hoibaoManagedBean.chuyentrangkshoibaochinhanh()}"  >  
+                      </h:commandLink>
+                </div>
+ 
+                <div class="wellcustom">
+                    <span>
+                       <h:graphicImage value="../../resources/images/scanner.png"  width="40px" height="40px" />  
+                     </span> 
+                    <h:commandLink    value="Scan Biên Nhận"  action="#{chinhamainManagedBean.taodoihoibao()}"> 
+                         
+                    </h:commandLink>
+                        
+                </div>
+                 <div class="wellcustom">
+                    <span>
+                       <h:graphicImage value="../../resources/images/camera-icon.png"  width="40px" height="40px" />  
+                    </span> 
+                    <h:commandLink id="chuphinh"  value="Chụp Hình"  action="dsimagehoibaotoday"> 
+                    </h:commandLink>
+                        
+                </div>
+                <div class="wellcustom">
+                    <span>
+                        <h:graphicImage value="../../resources/images/khachhangsubmit.jpg"  width="40px" height="40px" />  
+                    </span> 
+                    <h:commandLink id="xnkhachhang"  value="Cập nhật TTKH "  action="#{khachhangManagedBean.chuyentrang()}"> 
+                    </h:commandLink>
+
+                </div>
+
+                
+            </div>
+ 
+        </h:form>
+    </div>
+    </ui:define>
+</ui:composition> 
+

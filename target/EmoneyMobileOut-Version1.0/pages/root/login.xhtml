@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough" template="/templates/default/mainlogin.xhtml">
+    <ui:define name="content">         
+        <link href="resources/css/login/login.css" rel="stylesheet" type="text/css"/>
+        <div class="container  ">
+
+            <h:messages id="messages" showDetail="true" p:autoUpdate="true"  />
+            <h:form >
+
+                <h:inputText p:placeholder="Username"  value="#{loginManagerBean.username}" class="form-control inputlogin"  />
+
+                <h:inputSecret p:placeholder="Password"  value="#{loginManagerBean.password}" class="form-control inputlogin"  />
+
+
+                <h:commandButton action="#{loginManagerBean.validateUsernamePassword()}" value="Đăng nhập" class="btn btn-primary" styleClass="buttonlogin"/>
+
+            </h:form>
+
+        </div>
+
+
+
+    </ui:define>
+</ui:composition> 
+
