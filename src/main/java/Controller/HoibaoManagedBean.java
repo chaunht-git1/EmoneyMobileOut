@@ -131,16 +131,17 @@ public class HoibaoManagedBean implements Serializable {
                 this.chuyentrangdshoibao("C",null);
             
                 
-          if(kq.equalsIgnoreCase("T"))
+          if(kq.equalsIgnoreCase("F"))
           {   
            //this.tennvchitra=null;
            //xacminh=null;
-              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cập nhật  thành công", ""));
-             
+              
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cập nhật không thành công", ""));
               
           }
           else{
-               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cập nhật không thành công", ""));
+               
+              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cập nhật  thành công", ""));
              
           }
           }

@@ -1,6 +1,7 @@
  
 package Controller;
 
+import ApiFunction.ApiKhachhang;
 import DanhmucModel.DistrictList;
 import DanhmucModel.DmCitylist;
 import DaoDanhmuc.VwKhachhangttListTempDao;
@@ -64,31 +65,31 @@ public class KhachhangManagedBean implements Serializable {
      
     public void getdskhachhanguser(String loaitktk){
         
-        VwKhachhangttListTempDao khachhangttListTempDao= new VwKhachhangttListTempDao();
-        khachhangttListTemps=khachhangttListTempDao.findAll("DUNGTH",loaitktk);
+        ApiFunction.ApiKhachhang apiKhachhang= new ApiKhachhang();
+        khachhangttListTemps=apiKhachhang.dskhchitiet("DUNGTH");
         paginator = new RepeatPaginator(khachhangttListTemps);
  
     }
     
     public String capnhatthongtinkh(VwKhachhangttListTemp khachhangTemp){
         
-       VwKhachhangttListTempDao khachhangttListTempDao= new VwKhachhangttListTempDao();
-       boolean kq= khachhangttListTempDao.capnhatthongtinkh(khachhangTemp);
-       if (kq)
+       ApiKhachhang khachhangttListTempDao= new ApiKhachhang();
+       String kq=  khachhangttListTempDao.capnhatkhachhang(khachhangTemp);
+       
+       if (kq.equalsIgnoreCase("F"))
        {
-            this.getdskhachhanguser(loaitk);
-             return "backctkh";
- 
+            return null;
        }
        else{
-           return null;
+           
+            this.getdskhachhanguser(loaitk);
+            return "backctkh";
+
        }
       
  
     }
-    
-    
- 
+
     
     public KhachhangManagedBean() {
     }
