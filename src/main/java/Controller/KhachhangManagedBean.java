@@ -9,6 +9,7 @@ import Entitieskhout.KhachhangttListTemp;
 import Entitieskhout.VwKhachhangttListTemp;
 import Global.ConstantCodes;
 import Global.RepeatPaginator;
+import Global.SessionBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -37,7 +38,7 @@ public class KhachhangManagedBean implements Serializable {
     public String chuyentrangchitietkh(VwKhachhangttListTemp khTemp  ) {
           khachhangttListTemp=khTemp;
           String giatritk=null;
-                 giatritk=  khTemp.getTpHientai();
+          giatritk=  khTemp.getTpHientai();
           if(giatritk!=null )
           {
              this.laydsdistrictcity(khTemp.getTpHientai()) ;
@@ -66,13 +67,13 @@ public class KhachhangManagedBean implements Serializable {
     public void getdskhachhanguser(String loaitktk){
         
         ApiFunction.ApiKhachhang apiKhachhang= new ApiKhachhang();
-        khachhangttListTemps=apiKhachhang.dskhchitiet("DUNGTH");
+        khachhangttListTemps=apiKhachhang.dskhchitiet("DUNGTH",loaitktk);
         paginator = new RepeatPaginator(khachhangttListTemps);
  
     }
     
     public String capnhatthongtinkh(VwKhachhangttListTemp khachhangTemp){
-        
+       
        ApiKhachhang khachhangttListTempDao= new ApiKhachhang();
        String kq=  khachhangttListTempDao.capnhatkhachhang(khachhangTemp);
        

@@ -7,7 +7,10 @@ package Entitieskhout;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -696,6 +699,7 @@ public class VwKhachhangttListTemp implements Serializable {
     }
 
     public void setNgaycapCmnd(Date ngaycapCmnd) {
+        
         this.ngaycapCmnd = ngaycapCmnd;
     }
 
