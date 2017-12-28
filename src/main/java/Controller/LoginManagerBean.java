@@ -32,6 +32,12 @@ public class LoginManagerBean implements Serializable {
         sess.invalidate();
         return "logout"  ;
     }
+      public String laythongsohethong() {
+      
+        return "info"  ;
+    }
+    
+    
     public String gohome() {
         return "gohome"  ;
     } 

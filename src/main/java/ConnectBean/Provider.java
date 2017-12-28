@@ -18,6 +18,6 @@ public interface Provider {
 
     String DADABASEVW = "DatabaseView";
     String DADABASEKH = "DatabaseKieuhoi";
-    //String BASE_DOMAIN ="rest.dongamoneytransfer.com.vn";
+   // String BASE_DOMAIN ="rest.dongamoneytransfer.com.vn";
     String BASE_DOMAIN ="localhost:8080";
 }
