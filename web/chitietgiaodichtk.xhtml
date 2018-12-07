@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">     
+        <div class="row col-lg-10">
+            <h:form id="formhb">
+                <div class="form-group">
+
+                    <h:dataTable class="table table-bordered" id="showdata"  value="#{hoibaoManagedBean.vwKieuhoiListDetails}" var="item" binding="#{table}" >
+                        <h:column   >
+                            <f:facet name="header">
+                                <h:outputText value="Stt"/>
+                            </f:facet>
+                            <h:outputText value="#{table.rowIndex+1}" />
+                        </h:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tên người nhận"/>
+                            </f:facet>
+                            #{item.hoten}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Tên người gởi"/>
+                            </f:facet>
+                            #{item.nguoigoi}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mã người nhận"/>
+                            </f:facet>
+                            #{item.manguoinhan}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Số tiền"/>
+                            </f:facet>
+                            #{item.sotiengoi}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Loại tiền"/>
+                            </f:facet>
+                            #{item.idloaitiengoi}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ngày nhận file"/>
+                            </f:facet>
+                            #{item.ngaynhaplieu}
+                        </p:column>
+                        <p:column  style="width: 10% ; text-align: center" >
+                       
+                            <p:commandLink update=":formhb:bnDetail"  onclick="PF('showhinhBiennhan').show()" ajax="true" disabled="#{item.disimage}">
+                                <h:graphicImage name="/images/#{item.duongdanimage}" width="30" height="30"/>
+                                <f:setPropertyActionListener value="#{item}" target="#{hoibaoManagedBean.vwKieuhoiListDetail}"/>         
+                            </p:commandLink>
+                        </p:column>
+                    </h:dataTable>
+                    <div  >
+                      <p:confirmDialog global="false"  id="confirmDL2" message="#{hoibaoManagedBean.vwKieuhoiListDetail.manguoinhan}"
+                                     header="Thông tin chi tiết :" 
+                                     severity="alert" widgetVar="showhinhBiennhan" 
+                                     style="float: left;"
+                                     >
+                        <h:panelGrid id="bnDetail" columns="1" >
+                            <p:commandButton value="Download biên nhận" action="#{hoibaoManagedBean.downloadbiennhan()}" ajax="false" style="float: left"/>
+                            <p:graphicImage id="xembn"  value="BiennhanServlet?sobn=#{hoibaoManagedBean.vwKieuhoiListDetail.sobn}" style="width: 735px" />
+                        </h:panelGrid>
+
+
+                    </p:confirmDialog>
+                        
+                    </div>
+                   
+                </div>
+            </h:form>
+        </div>
+        
+        <script src="showimage.js" type="text/javascript"></script>
+ 
+    </ui:define>
+</ui:composition> 
+

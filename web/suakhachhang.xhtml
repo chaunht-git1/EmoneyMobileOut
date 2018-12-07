@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"    
+                xmlns:ui="http://java.sun.com/jsf/facelets" template="/templates/default/main.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">                        
+        <h:form>
+            <div class="well well-sm col-lg-12"  > 
+            <p:panelGrid  >
+             <p:row>
+                <p:column colspan="2"><h:outputLabel class="noidung_red" value="Thông tin bắt buộc" /></p:column>
+                <p:column colspan="2">
+                    <h:commandButton value="Đúng thông tin" rendered="#{khachhangManagedBean.chitietkhachhang.dachuanhoa!='Y'}"    action="#{khachhangManagedBean.capnhatthongtinkh(14,khachhangManagedBean.chitietkhachhang)}" />
+                </p:column>
+               
+            </p:row>
+            <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="Họ Tên" />
+                </p:column> 
+                <p:column>
+                    <h:inputText id="hokh" class="noidung"  p:placeholder="Họ tên"  value="#{khachhangManagedBean.chitietkhachhang.hoten}" autocomplete="true"    /> 
+                 <p:column>
+                     <h:commandButton value="Lưu"  action="#{khachhangManagedBean.capnhatthongtinkh(1,khachhangManagedBean.chitietkhachhang)}" />
+                 </p:column>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="Số Chứng Minh" />
+                </p:column> 
+                <p:column>
+                    <h:inputText id="cmnd" class="noidung "   p:placeholder="Số Chứng Minh"  value="#{khachhangManagedBean.chitietkhachhang.sochungminh}"   /> 
+                   <p:column>
+                      <h:commandButton value="Lưu" action="#{khachhangManagedBean.capnhatthongtinkh(4,khachhangManagedBean.chitietkhachhang)}" />
+                </p:column>
+                </p:column>
+            </p:row>
+             <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="Di động" />
+                </p:column> 
+                <p:column>
+                    <h:inputText id="didong" class="noidung "   p:placeholder="Di động"  value="#{khachhangManagedBean.chitietkhachhang.didong1}"   /> 
+                     <p:column>
+                    <h:commandButton value="Lưu" action="#{khachhangManagedBean.capnhatthongtinkh(3,khachhangManagedBean.chitietkhachhang)}" />
+                </p:column>
+                </p:column>
+            </p:row> 
+             <p:row>         
+                <p:column colspan="2">
+                     <h:outputLabel value="Số nhà :" />
+                </p:column> 
+                <p:column  >
+                    <h:inputTextarea id="sonha" class="noidung form-control" rows="2"  p:placeholder="số nhà/tên đường-phường/xã"  value="#{khachhangManagedBean.chitietkhachhang.sonhaHientai}" /> 
+               <p:column>
+                    <h:commandButton value="Lưu" action="#{khachhangManagedBean.capnhatthongtinkh(7,khachhangManagedBean.chitietkhachhang)}" />
+                </p:column> 
+                 </p:column>
+            </p:row>  
+               <p:row>
+                  <p:column colspan="8"><h:outputLabel class="noidung" value="Thông tin thêm" /></p:column>
+              </p:row>  
+               <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="GPLX" />
+                </p:column> 
+                <p:column>
+                    <h:inputText id="gplx" class="noidung "   p:placeholder="GPLX"  value="#{khachhangManagedBean.chitietkhachhang.giayPlx}"   /> 
+                </p:column>
+                   <p:column>
+                                         <h:commandButton value="Lưu" action="#{khachhangManagedBean.capnhatthongtinkh(11,khachhangManagedBean.chitietkhachhang)}" />
+                </p:column>
+              </p:row> 
+                <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="Passport" />
+                </p:column> 
+                <p:column>
+                    <h:inputText id="passport" class="noidung "   p:placeholder="Passport"  value="#{khachhangManagedBean.chitietkhachhang.passport}"   /> 
+                </p:column>
+                <p:column>
+                   <h:commandButton value="Lưu" action="#{khachhangManagedBean.capnhatthongtinkh(12,khachhangManagedBean.chitietkhachhang)}" />
+                </p:column>
+              </p:row>  
+               <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="Đã chuẩn hóa" />
+                </p:column> 
+                <p:column>
+                    <h:outputLabel id="dachuanhoa" class="noidung "   p:placeholder="Đã chuẩn hóa"  value="#{khachhangManagedBean.chitietkhachhang.dachuanhoa}"    /> 
+                </p:column>
+                <p:column>
+                     <h:outputLabel value=""/>
+                </p:column>
+              </p:row>    
+              <p:row>
+                <p:column colspan="2">
+                     <h:outputLabel value="Mã khách hàng" />
+                </p:column> 
+                <p:column>
+                    <h:outputLabel id="makh" class="noidung "   p:placeholder="Mã khách hàng"  value="#{khachhangManagedBean.chitietkhachhang.idKhachhang}"    /> 
+                </p:column>
+                 <p:column>
+                     <h:outputLabel value=""/>
+                 </p:column>
+                </p:row> 
+            </p:panelGrid>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition> 

@@ -1,0 +1,134 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/default/main.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">   
+        <f:event listener="#{qlchitraManagedBean.showdatagchuagpall()}" type="preRenderView" />
+        <h:form>
+            <div class="row ">
+                <div class="form-group">
+
+                    <div class="col-xs-6 box">
+                        <h:commandLink id="btnback"
+                                       class="form-control"
+                                       action="indexchiquay.xhtml" 
+                                       styleClass="btn btn-default"  >
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Trở về
+                        </h:commandLink>
+                    </div>
+                    <div class="col-xs-6 box">
+                        <h:commandLink id="btnall"
+                                       class="form-control"
+                                       action="#{chitragphieuManagedBean.showdatagchuagpall()}" 
+                                       styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            Làm mới
+                        </h:commandLink>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </h:form>
+        <h:form>
+            <div class="row" >
+
+                <div class="form-group">
+                    <h:selectOneMenu  id="noicap" class="btn btn-default dropdown-toggle form-control"  value="#{chitragphieuManagedBean.loaitk}"  >
+                        <f:selectItem   itemValue="00001" itemLabel="Tất cả" />
+                        <f:selectItem   itemValue="00002" itemLabel="Chưa in" />
+                        <f:selectItem   itemValue="00003" itemLabel="Đã in" />
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <h:commandLink id="btnsearch"
+                                   class="form-control disabled"
+                                   action="#{chitragphieuManagedBean.showdatagchuagptheodk()}"
+                                   styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white" disabled="false">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Lọc dữ liệu
+                    </h:commandLink>
+
+                </div>
+
+            </div>
+        </h:form>
+
+        <h:form>
+            <div class="row " >
+                <div class="form-group">
+
+                    <div class="form-group">
+                        <h:selectOneMenu  id="dsnvct" class="btn btn-default dropdown-toggle form-control"    value="#{chitragphieuManagedBean.iddoitactk}" disabled="flase"
+                                          required="true" requiredMessage="Vui lòng chọn loại giấy tờ">
+                            <f:selectItems  var="dsdoitac" value="#{chitragphieuManagedBean.dsdoitacGp}"  itemValue="#{dsdoitac.idCode}" itemLabel="#{dsdoitac.description}" />
+                        </h:selectOneMenu>
+                    </div>
+
+                </div>        
+            </div>
+        </h:form>
+        <h:form>
+            <div class="row">
+                <div class=" form-group well well-sm">
+                    <h:outputLabel value="Số hồ sơ :"/>
+                    <h:outputLabel value="#{qlchitraManagedBean.dsgdchuaxnqlq.size()}"/> 
+                </div>
+                <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{qlchitraManagedBean.dsgdchuaxnqlq}" var="data"  paginator="true"  
+                             rowStyleClass="#{data.loaihs eq 'MG' ? 'colored' :null}"
+                             rows="10" paginatorPosition="top"                              
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " 
+                             rowsPerPageTemplate="10,20,30">
+                <p:column style="  text-align: left" >
+                        <f:facet name="header">
+                            Mã nhân viên
+                        </f:facet>
+                    <p:outputLabel value="#{rowIndex+1}" />
+                    -
+                    <p:outputLabel value="#{data.idNvChitra}" />
+                </p:column>
+                 <p:column style="  text-align: left;width: 300px" >
+                        <f:facet name="header">
+                        </f:facet>
+                     <p:outputLabel value="#{data.tenNhanvien}" />
+                </p:column>
+                <p:column style="  text-align: center" >
+                        <f:facet name="header">
+                        </f:facet>
+                    <p:outputLabel value="#{data.shs}" />
+                </p:column>
+                <p:column style="  text-align: center" >
+                        <f:facet name="header">
+                        </f:facet>
+                    <p:outputLabel value="#{data.loaihs}" />
+                </p:column>
+                    <p:column>
+            
+                     <h:commandButton action="#{chitragphieuManagedBean.capnhatttgdich()}" value="Chi tiết" class="btn btn-link"     >
+                            <f:setPropertyActionListener value="#{data}" target="#{qlchitraManagedBean.giaodichchuagiaoct}"/>
+                      </h:commandButton>    
+          </p:column>
+                    <p:column>
+                     <h:commandButton action="#{chitragphieuManagedBean.capnhatttgdich()}" value="Xác nhận" class="btn btn-link"     >
+                            <f:setPropertyActionListener value="#{data}" target="#{qlchitraManagedBean.giaodichchuagiaoct}"/>
+                      </h:commandButton> 
+                    </p:column>
+                </p:dataTable>
+              
+
+
+            </div>
+        </h:form>
+        
+<style type="text/css">.colored {
+ 
+    color: #FF0000;
+  }
+</style>
+
+    </ui:define>
+</ui:composition> 

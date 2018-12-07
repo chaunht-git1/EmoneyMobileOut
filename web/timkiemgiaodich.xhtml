@@ -1,0 +1,126 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+   <div class="container"> 
+       <h:form>
+           <div class="form-group well well-sm">
+            
+               <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+                <div class="form-group">
+                    <h:selectOneMenu  id="loaidk" class="btn btn-default dropdown-toggle form-control"  value="#{timkiemManagedBean.loaitk}"  >
+                <f:selectItem   itemValue="dienthoai" itemLabel="Số Điện Thoại"  />
+                <f:selectItem   itemValue="cmnd" itemLabel="Số CMND / Passport" />
+                <f:selectItem   itemValue="makh" itemLabel="Mã khách hàng" />
+                <f:selectItem   itemValue="hoten" itemLabel="Họ tên" />
+                </h:selectOneMenu>
+                </div>
+                <div class="btn-group">     
+                    <div class="input-group">
+                        <h:inputText id="giatridk" class="form-control"   a:placeholder="Tìm kiếm..."  value="#{timkiemManagedBean.dulieutk}"/>
+                           <span class="input-group-btn">
+                               <h:commandButton id="btnlenbaocao"  class="btn btn-primary" value="Tìm" action="#{timkiemManagedBean.locsolieutheodieukiem(timkiemManagedBean.loaitk, timkiemManagedBean.dulieutk)}"   >
+                                   <p:ajax update="showdata loaidk giatridk"/>
+                               </h:commandButton>    
+                           
+                           </span>                          
+                       </div>   
+                </div>
+           </div>
+           
+           <ui:repeat id="showdata" var="o" value="#{timkiemManagedBean.chitietgiaodichModels}" varStatus="status">
+               <div class="col-lg-3 well" style="min-height: 650px">
+                   <div>
+                      
+                   </div>
+                    <div class="form-group well well-sm">
+                        <div class="form-group">
+                       <div class="input-group">
+                           <h:inputText  class="form-control"  a:placeholder="Số CMND"  value="#{o.soCtTuythan}"  />
+                           <span class="input-group-btn">
+                               <h:commandButton id="btnlenbaocao" class="btn btn-primary" value="Lưu"   action="#{hoibaoManagedBean.capnhatcmnd(o)}"   ></h:commandButton> 
+                           </span> 
+                            <span class="input-group-btn">
+                                <h:commandButton id="btnchuyen" class="btn btn-success" value="Chuyển"   action="#{hoibaoManagedBean.capnhatchuyenhoso(o)}"   ></h:commandButton>>
+                            </span>  
+                       </div>   
+                   </div>  
+                    
+                   <div class="form-group">
+                       <h:inputTextarea class="form-control"   a:placeholder="Lý do xác minh ..."  cols="2" value="#{o.lydoXmnk}" readonly="false" style="color: blue"/>
+                   </div>
+                    <div class="form-group">
+                       <h:commandButton id="btnxacminh" class="btn btn-warning form-control" value="Xác minh"   action="#{hoibaoManagedBean.capnhatxacminhdate(o)}"   ></h:commandButton> 
+                   </div>     
+ 
+                    </div>
+                  
+                   <div class="form-group form-inline">
+                        <div class="form-group form-inline">
+                         <h:outputLabel value= "#{status.index+1}"  style="border: 0px;color: red"/>
+                           -
+                           <h:outputLabel value="#{o.sobn}" style="color: blue"/>
+                        </div>
+                       -
+                        <h:outputLabel value="MKH:"/>   
+                        <h:commandLink class="l" value="#{o.maKhachhang} " style="background: yellow"  />
+                   </div>
+                   <div class="form-group">
+                       <h:outputLabel value="Đ hồ sơ:"/>   
+                       <h:outputLabel value="#{o.congtacvien}" style="background: yellow" />         
+                   </div> 
+                   <div class="form-group">
+                       <h:outputLabel value="#{o.doitacName}"/>         
+                   </div> 
+                   <div class="form-group form-inline">
+                       <h:outputLabel value="N gửi:"/>   
+                       <h:outputLabel value="#{o.nguoigoi}"/>
+                   </div>  
+                   <div class="form-group form-inline">
+                        <h:outputLabel value="H.tên:"/>   
+                       <h:outputLabel value="#{o.hoten}" style="color: blue"/>
+                   </div>   
+                  <div class="form-group">
+                       <h:outputLabel value="Mã NN:"/>  
+                       <h:outputLabel value="#{o.maNguoinhan}"/>
+                   </div>
+                   <div class="form-group form-inline">
+                       <h:outputLabel value="Số tiền "/>   
+                       :
+                       <h:outputLabel value="#{o.sotiengoi}" style="color: red">
+                           <f:convertNumber pattern="###,###,###.##"/>
+                       </h:outputLabel>
+                       <h:outputLabel value="#{o.idLoaitienchitra}"/>                  
+                   </div>
+                   <div class="form-group form-inline">
+                        <h:outputLabel value="Tỷ giá "/>   
+                       <h:outputLabel value="#{o.tygia}"/>
+                       -
+                       <h:outputLabel value="Thành tiền "/>   
+                       <h:outputLabel value="#{o.thanhtien}"/>
+                   </div>
+                    <div class="form-group">
+                        <h:outputLabel  class="form-control" value="#{o.dienthoai}" style="color: blue" />
+                   </div>
+                   
+                    <div class="form-group">
+                        <h:inputTextarea  class="form-control" value="#{o.diachi}" rows="3" readonly="true"/>
+                   </div>
+                   <div class="form-group">
+                       <h:inputTextarea class="form-control"   a:placeholder="Lý do xác minh ..."  cols="2" value="#{o.lydoxacminh}" readonly="true" style="color: blue"/>
+                   </div>
+                
+               </div>
+           </ui:repeat>
+         
+       </h:form>
+
+   </div>
+ 
+        
+    </ui:define>
+</ui:composition> 

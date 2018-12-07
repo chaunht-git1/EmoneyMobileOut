@@ -1,0 +1,142 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough" 
+                xmlns:px="http://primefaces.org/ui" template="/templates/default/main.xhtml">
+    <ui:define name="content">                        
+    <div class="example">
+    <div class="container">
+        <h:form>
+                   <div class="form-group">
+                          <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+                   </div>
+       </h:form>
+        <h:form>
+                <div class="row  well well-sm">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-6 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="indexchinha.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+                            <div class="col-xs-6 box">
+                                <h:commandLink id="btnall"
+                                               class="form-control"
+                                               action="#{chinhamainManagedBean.showallgiaodich()}" 
+                                               styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    Tất cả
+                                </h:commandLink>
+                            </div>
+                            <hr/> 
+             
+
+                    </div>
+ 
+                </div>
+                <div class="row  well well-sm"  >
+                 
+
+                        <div class="form-group">
+                            <h:selectOneMenu  id="noicap" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.loaitk}"  >
+                                <f:selectItem   itemValue="00001" itemLabel="Số biên nhận" />
+                                <f:selectItem   itemValue="00002" itemLabel="Mã người nhận" />
+                                <f:selectItem   itemValue="00003" itemLabel="Số điện thoại" />
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group">
+                            <h:inputText id="idkhachhang"  p:placeholder="Giá trị tìm kiếm"  value="#{giaodichKhManagedBean.makhachhangtk}" class="form-control" /> 
+                        </div>
+                        <div class="form-group">
+
+                            <h:commandLink id="btnsearch"
+                                           class="form-control"
+                                           action="#{chinhamainManagedBean.t}"
+                                           styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Tìm thông tin
+                            </h:commandLink>
+
+                        </div>
+
+                </div>
+                    </h:form>
+                   <h:form>
+
+                <div class="row " >
+ 
+                    <ui:repeat var="o" value="#{chinhamainManagedBean.dsTranSacWeb}" varStatus="status">
+
+
+                        <div class="  form-group well well-sm  ">
+                            <div class="form-inline form-group " >
+                                <h:outputLabel value= "#{status.index+1}"  style="border: 0px;color: red;font-size: large"/>
+                                <h:outputLabel value= "-"  style="border: 0px"/>
+                                <div class="btn-group form-group" >
+                                 <h:outputLabel value="Đã chi trả:#{o.trangthaiout}" />
+   
+                                 </div> 
+                                
+                               
+                            </div>   
+                            <div class="form-group">
+                               <h:outputLabel value= "Số biên nhận:  "  style="border: 0px"/>
+                               <h:outputLabel value= "#{o.sobn}"   style="border: 0px;color: red;font-weight: bold"/> 
+                            </div>
+                             
+                            
+                            <div class="form-group" >
+                                <h:outputLabel value= "Đối tác:  "  style="border: 0px"/>
+                                <h:outputLabel value= "#{o.tendoitac}"  style="border: 0px;color: blue"/>
+                            </div>    
+                            <div class="form-inline form-group" >
+                                <h:outputLabel value= "Người nhận:  "  style="border: 0px "/>
+                                <h:outputLabel value= "#{o.hoten}"  style="border: 0px;color: blue"/>
+                            </div>
+                            <div class="form-inline form-group" >
+                                <h:outputLabel value= "Giấy tờ:  "  style="border: 0px "/>
+                                <h:outputLabel value= "#{o.tengiayto}"  style="border: 0px;color: blue"/>
+                                <h:outputLabel value= "-"  style="border: 0px"/>
+                                <h:outputLabel value= " Số:  "  style="border: 0px " />
+                                <h:outputLabel id="socmlabel" value= "#{o.soCtTuythan}" class="noidung_imp" style="border: 0px " />
+                            </div>
+                            <div class="form-inline form-group" >
+                                <h:outputLabel value= "Số tiền gởi:  "  style="border: 0px "/>
+                                <h:outputLabel value= "#{o.sotiengoi}"   style="border: 0px;color: blue"/>
+                                <h:outputLabel value= "#{o.idLoaitienchitra}"   style="border: 0px;color: red"/> 
+                            </div> 
+                            <div class="form-group" >
+                                <h:outputLabel value= "Lý do xác minh:  "  style="border: 0px"/>
+                                <h:outputLabel id="xacminh" class="noidung_imp" value="#{o.ghichu}"     style="font-size: small" />
+                            </div> 
+                            <div class="btn-group form-group">
+                                <h:form>
+                                    <h:commandButton id="btncapnhat" action="#{chinhamainManagedBean.capnhatgiaodichdahoibao()}" class="btn btn-success btn-xs" value="Cập nhật" >
+                                        <f:setPropertyActionListener value="#{o}" target="#{chinhamainManagedBean.tranSacWeb}"/>
+                                    </h:commandButton>
+                                    <h:commandButton id="btnchuyen" class="btn btn-success btn-xs" value="Xác minh"  action="#{chinhamainManagedBean.chuyentrangxacminh()}">
+                                        <f:setPropertyActionListener value="#{o}" target="#{chinhamainManagedBean.tranSacWeb}"/>
+                                    </h:commandButton>
+                                </h:form>
+
+                            </div>
+                        </div>
+                        <hr/>
+
+
+                    </ui:repeat>
+    </div>
+                        
+   </h:form>
+     </div>    
+</div>
+        
+    </ui:define>
+</ui:composition> 

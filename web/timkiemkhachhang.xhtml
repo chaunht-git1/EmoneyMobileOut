@@ -1,0 +1,169 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough" template="/templates/default/main.xhtml">
+    <ui:define name="content">                        
+     
+ 
+<div class="container">
+  
+    
+        <h:form>
+        <div class="row wellcustom" >
+        <div class="form-group">
+            <h:messages id="messages" class="error" showDetail="false" a:autoUpdate="true" p:closable="true"  />   
+        </div>
+    
+         <div class="form-group">
+               <h:selectOneMenu  id="noicap" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.loaitkdulieu}"  >
+                <f:selectItem   itemValue="TK00001" itemLabel="Số chứng minh:"  />
+                <f:selectItem   itemValue="TK00002" itemLabel="Điện thoại" />
+                <f:selectItem   itemValue="TK00003" itemLabel="Địa chỉ" />
+                </h:selectOneMenu>
+         </div>
+        
+            <div class="btn-group ">
+                <div class="input-group">   
+                    <h:inputText  id="idkhachhang"  p:placeholder="Giá trị tìm kiếm"  value="#{khachhangManagedBean.makhachhangtk}" class="form-control" required="true" requiredMessage="Giá trị tìm kiếm không bỏ trống"/> 
+
+                    <span class="input-group-btn">
+                        <h:commandButton action="#{khachhangManagedBean.timkhachhang(khachhangManagedBean.loaitkdulieu,khachhangManagedBean.makhachhangtk)}" value="Tìm" class="btn btn-primary"     >
+
+                        </h:commandButton>
+                    </span>
+                </div>   
+            </div> 
+            </div>  
+          </h:form>
+     
+   
+    <h:form>
+ 
+        <ui:repeat  var="o" value="#{khachhangManagedBean.dskhfilter}" varStatus="status">
+            <div class="wellcustom">
+                <p:tabView >
+                <p:tab title="TT Chung" >
+                    <div  >
+                        <p:row>
+                        <h:panelGrid    >
+                            <p:column>
+                               <span class="blink_me noidung_red">
+                                <h:outputLabel value="chưa chuẩn hóa" rendered="#{o.dachuanhoa == 'N' or o.dachuanhoa == 'T'  }" /> 
+                               </span>  
+                            </p:column>
+                            <p:column>   
+                              
+                            <h:outputText  value= "Mã Kh:" />
+                            <h:outputText   value= "#{o.idKhachhang}" />
+                           
+                            </p:column>  
+                            <p:column>   
+                            <h:outputText value= "Họ tên :" />
+                            <h:outputText value= "#{o.hoten}" />
+                             </p:column>  
+                             <p:column>   
+                                 <h:outputText  value= "CMND:" />
+                            <h:outputText class="noidung_imp" value= "#{o.sochungminh}" />
+                            </p:column>  
+                             <p:column>   
+                            <h:outputText value= "Di động" />
+                            <h:outputText value= "#{o.didong1}" />
+                            </p:column>  
+                            <p:column>   
+                            <h:outputText value= "GPLX:" />
+                            <h:outputText value= "#{o.giayPlx}" />
+                            </p:column>  
+                            <p:column>   
+                            <h:outputText value= "Passport:" />
+                            <h:outputText value= "#{o.passport}" />
+                            </p:column> 
+                            <p:column>  
+                            <h:outputText value= "Chuẩn hóa:" />
+                            <h:outputText value= "#{o.dachuanhoa}" />
+                            </p:column> 
+                        </h:panelGrid>
+                        </p:row> 
+                        <p:row>
+                            <p:column colspan="2">
+                                <h:inputTextarea class="form-control" rows="2" readonly="true" value= "#{o.sonhaThuongtru}#{o.quanhuyenthuongtruName}#{o.thanhphothuongtruName}" />
+                            </p:column>    
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <div class="input-group">
+ 
+                                    <h:commandButton action="#{khachhangManagedBean.chuyentrangsuakhachhang(o)}" value="Cập nhật" class="btn btn-primary"  >
+                                </h:commandButton>
+                               
+                                <span>
+                                <h:commandButton action="#{khachhangManagedBean.xoathongtin()}" value="Xóa" class="btn btn-warning  btn-default" disabled="#{khachhangManagedBean. isDisxoakh}"   >
+                                    <f:setPropertyActionListener value="#{o}" target="#{khachhangManagedBean.khachhangct}"/>
+                                </h:commandButton>
+                                </span>
+                                    
+                                                                    
+                                </div>      
+                            </p:column>
+                        </p:row>
+                    </div>
+                </p:tab>
+                <p:tab title="Lịch sử">
+                    <p:dataTable id="showdata" rowIndexVar="rowIndex"  value="#{khachhangManagedBean.dsgdfilter}" var="item" paginator="true"  rows="30" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " 
+                                  rowsPerPageTemplate="10" editMode="cell"  editable="true" widgetVar="cellsgiaophieu" >
+                         <p:column>
+                             <p:panelGrid   >
+                                 <p:row>
+                                    <p:column>
+                                    <p:outputLabel value="#{rowIndex+1}" />
+                                    -
+                                    <h:outputText value= "NCT:" />
+                                    <h:outputText class="noidung_imp" value= "#{item.ngayChitra}" >
+                                           <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                    </h:outputText>
+                                    <span >
+                                        <h:commandLink id="btnlenbaocao2" class="noidung_red" value="Chi tiết" action="#{timkiemttbiennhanManagedBean.laythongtinchitietbiennhan(item)}"  /> 
+                                    </span> 
+                                    </p:column>
+                                 </p:row>
+                                 <p:row>
+                                 <p:column>
+                                    <h:outputText value= "Tên đối tác:" />
+                                    <h:outputText value= "#{item.doitacName}" /> 
+                                 </p:column>  
+                                 </p:row>
+                                  <p:row>
+                                    <p:column>
+                                    <h:outputText value= "Họ tên :" />
+                                    <h:outputText value= "#{item.hoten}" />  
+                                    </p:column>
+                                 </p:row>
+                                 <p:row>
+                                    <p:column>
+                                    <h:outputText  value= "Nhân viên:" />
+                                    <h:outputText class="noidung" value= "#{item.idNvChitra}" />
+                                    </p:column>
+                                 </p:row>
+ 
+     
+                        </p:panelGrid>
+                         </p:column>
+                     </p:dataTable>
+                </p:tab>
+            </p:tabView>
+            </div>
+            
+ 
+
+           
+    
+       </ui:repeat>
+ 
+ </h:form>
+    
+    
+</div>
+ 
+    </ui:define>
+</ui:composition> 

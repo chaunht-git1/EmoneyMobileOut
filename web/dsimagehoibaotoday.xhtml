@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+ 
+    <div class="example">
+    <div class="container">
+    
+        <h:form>
+                <div class="row wellcustom">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="index.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+           
+
+                    </div>
+ 
+                </div>
+
+                    </h:form>
+                <h:form>
+                <div class="row " >
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <div class="wellcustom" > 
+
+                           <div class="btn-group">
+                           <h:commandButton class="btn btn-primary btn-circle btn-xl" value="Upload"  action="#{chinhamainManagedBean.taodotchuphinh()}"/>     
+                           <h:commandButton class="btn btn-success btn-circle btn-xl" value="Xem hồ sơ" action="#{chinhamainManagedBean.showthongtinhoibao()}" >
+                               <p:ajax update="showdata" />
+                           </h:commandButton>
+                           <h:commandButton class="btn btn-primary btn-circle btn-xl" value="Hoàn thành" action="#{chinhamainManagedBean.showthongtinhbdahoanthanh()}" >
+                               <p:ajax update="showdata" />
+                           </h:commandButton>
+                           
+                      </div>
+
+                    </div>     
+                 </div>
+
+                <div class="row " >
+ 
+                    <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.dmQuanlydotImagetongWebs}" var="item" paginator="true"  
+                             rows="10" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " >
+                     
+                     <p:column   >   
+                         <p:panelGrid>
+                             <p:row>
+                                 <p:column>
+                                    <h:outputLabel value="Đợt hs :"/>  
+                                    <h:outputLabel value="#{item.dotbn}"/>  
+                                 </p:column>
+                             </p:row>
+                             <p:row>
+                                    <p:column>
+                                    <h:outputLabel  value="Trạng thái:"/>  
+                                    <h:outputLabel value="#{item.deserror}" styleClass="noidung_red"/>  
+                                 </p:column>
+                             </p:row>
+                              <p:row>
+                                    <p:column>
+                                    <h:outputLabel value="Kiểm tra:"/>  
+                                    <h:outputLabel value="#{item.kiemtra}"/>  
+                                 </p:column>
+                             </p:row>
+                              <p:row>
+                                    <p:column>
+                                   <h:outputLabel value="Số lượng:"/> 
+                                   <h:outputLabel value="#{item.shs}"/>  
+                                 </p:column>
+                             </p:row>
+                             <p:row>
+                                 <p:column>    
+                                     <h:commandButton value="Chi tiết" action="#{chinhamainManagedBean.kiemtrabiennhanupload(item)}" />
+                                     <h:commandButton class="btn-danger" value="Xác nhận" action="#{chinhamainManagedBean.xacnhandotbn(item)}" rendered="#{item.deserror=='SUSS' and item.kiemtra!='Y'}"  />
+                                 </p:column>      
+                             </p:row>
+           
+                             
+                         </p:panelGrid>  
+                    </p:column>  
+                    </p:dataTable>
+                       
+    </div>
+                        
+   </h:form>
+     </div>    
+</div>
+        
+    </ui:define>
+</ui:composition> 

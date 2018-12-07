@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+ 
+    <div class="example">
+    <div class="container">
+        <h:form>
+                   <div class="form-group">
+                          <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+                   </div>
+       </h:form>
+        <h:form>
+                <div class="row  well well-sm">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="dshshoibaonvchinha.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+           
+
+                    </div>
+ 
+                </div>
+
+                    </h:form>
+                   <h:form>
+              
+
+                <div class="row " >
+                  
+                    <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.dmQuanlydotimagectietWebs}" var="item" paginator="true"  
+                             rows="10" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="10,20,30">
+
+                     <p:column>   
+                             <f:facet name="header">Thông tin chi tiết</f:facet>  
+                             <div class="well well-sm">
+                                 <div class="form-group">
+        
+                                   <h:outputLabel value="Số biên nhận:#{item.sobn}" style="background:  yellow"/>
+    
+                                 </div>
+                                 <div class="form-group">
+                                   
+                                   <h:outputLabel value="Họ tên:#{item.hoten}"/>              
+                          
+    
+                                 </div>
+                                <div class="form-group">
+                                   
+                                    <h:outputLabel value="Người gửi:#{item.nguoigoi}"/>              
+                          
+    
+                                 </div>
+                                  <div class="form-group">
+        
+                                      <h:outputLabel value="Nội dung xác minh:#{item.noidungxm}" style="background:  yellow"/>
+    
+                                 </div>
+                                 
+                                  
+ 
+                                 </div>
+                          
+                    
+                             
+                    </p:column>
+                  
+                </p:dataTable>      
+                       
+    </div>
+                        
+   </h:form>
+     </div>    
+</div>
+        
+    </ui:define>
+</ui:composition> 

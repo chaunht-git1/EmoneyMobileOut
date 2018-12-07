@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+ 
+    <div class="example">
+    <div class="container">
+        <h:form>
+                   <div class="form-group">
+                          <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+                   </div>
+       </h:form>
+        <h:form>
+                <div class="row  well well-sm">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="dsimagehoibaotoday.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+           
+
+                    </div>
+ 
+                </div>
+
+                    </h:form>
+                   <h:form>
+              
+                     
+                <div class="row " >
+                  
+                <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.dmQuanlydotimagectietWebs}" var="item" paginator="true"  
+                             rows="1" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="1,5,7">
+
+                     <p:column   >   
+                             <f:facet name="header">Thông tin chi tiết</f:facet>  
+                             
+                             <div class="form-group  wellcustom" >
+                                   <div class="form-group">
+                                       <div class="form-group">
+                                         <h:outputLabel id="ht" class="form-control noidung" value="Họ tên:#{chinhamainManagedBean.vwDsUploadImagehbWeb.hoten}"/>
+                                         <h:outputLabel id="sobn" class="form-control" value="Số biên nhận:#{chinhamainManagedBean.vwDsUploadImagehbWeb.sobn}"/>
+                                         <h:outputLabel id="dct" class="form-control" value="Đã chi trả:#{chinhamainManagedBean.vwDsUploadImagehbWeb.dachitra}-Đã hồi báo:#{chinhamainManagedBean.vwDsUploadImagehbWeb.biennhanC}"/>
+                                         <h:outputLabel id="loagt" class="form-control noidung_imp" value="Số giấy tờ:#{chinhamainManagedBean.vwDsUploadImagehbWeb.soCtTuythan}"/>
+                                     </div>
+
+                                     <div>
+                                 
+                                     </div>
+                                   
+                                    </div>
+                               
+                         
+                             </div>
+                             <div class="wellcustom">
+                                 
+                                  <div class="input-group">
+                                  <span class="input-group-addon" id="basic-addon1" style="width: 70px">Số BN::</span>
+                                  <h:inputText id="fisrtinput"  class="input-sm form-control" value="#{item.sobn}"  a:autofocus="true" rendered="#{item.deserror=='ERROR'}"  >
+                                      <p:ajax update="ht loagt sobn dct xacnhan socttt" listener="#{chinhamainManagedBean.kiemtragiaodich(item)}"/>
+                                  </h:inputText>    
+                                  </div>
+                                 <div class="input-group">
+                                  <span class="input-group-addon" id="basic-addon1" style="width: 70px">Số CMND:</span>
+                                  <h:inputText id="socttt" class="input-sm form-control" value="#{item.soCtTuythan}"  />
+
+                                  </div>
+                                 <div class="btn-group">
+                                     <div class="form-inline">
+                                           <h:commandLink id="xacnhan"   class="btn btn-success btn-lg " value="Xác nhận" action="#{chinhamainManagedBean.rexacnhanthongtinerror(item)}"  rendered="#{item.kiemtra!='Y'}"    />    
+                                           <h:commandLink  value="Xóa" class="btn btn-danger btn-lg" action="#{chinhamainManagedBean.deletebnchuaduyet(item)}" rendered="#{ item.kiemtra!='Y'}"  />  
+                                     </div>
+
+                                 </div>
+                             </div >
+                             <div class="wellcustom">
+                                 <p:graphicImage id="xembn"  value="DisplayImage?id=#{item.khoa}"  style="width: 100%" />
+                             </div>
+                             
+                    </p:column>
+                  
+                </p:dataTable>      
+                       
+    </div>
+                        
+   </h:form>
+     </div>    
+</div>
+        
+
+    </ui:define>
+</ui:composition> 

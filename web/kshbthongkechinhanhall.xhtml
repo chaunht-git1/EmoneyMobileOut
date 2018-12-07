@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+ 
+    <div class="example">
+    <div class="container">
+    
+        <h:form>
+                <div class="row  well well-sm">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="indexchinha.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+           
+
+                    </div>
+ 
+                </div>
+
+                    </h:form>
+                <h:form>
+                <div class="row " >
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <div class="well well-sm" >
+                        <div class="form-group">     
+                        <h:commandButton value="Hiện thông tin" action="#{hoibaoManagedBean.showttallnv()}" >
+                               <p:ajax update="showdata" />
+                        </h:commandButton>
+                         </div>
+                    </div>     
+                 </div>
+
+                <div class="row " >
+                  
+                    <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{hoibaoManagedBean.listhskiemtranv}" var="item" paginator="true"  
+                             rows="40" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="40,50,60">
+                   
+                     <p:column   >   
+                             <f:facet name="header">Tên chi nhánh</f:facet>     
+                             <h:outputLabel value="#{item.tenchinhanh}" style="width: 400px"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">Trạng thái</f:facet>     
+                             <h:outputLabel value="#{item.hoten}" style="width: 400px"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">Số hồ sơ</f:facet>     
+                             <h:outputLabel value="#{item.shs}"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">DCT</f:facet>     
+                             <h:outputLabel value="#{item.dachitra}"/>
+                    </p:column>
+                     <p:column   >   
+                             <f:facet name="header">ChuaC</f:facet>     
+                             <h:outputLabel value="#{item.chuachitra}"/>
+                    </p:column> 
+                     <p:column   >   
+                             <f:facet name="header">Hình</f:facet>     
+                             <h:outputLabel value="#{item.daquyetbn}"/>
+                    </p:column>     
+                     <p:column   >   
+                             <f:facet name="header">XM</f:facet>     
+                             <h:outputLabel value="#{item.shsxacminh}"/>
+                    </p:column>   
+                    <p:column   >   
+                             <f:facet name="header">DCTchuaBN</f:facet>     
+                             <h:outputLabel value="#{item.dachitrachuabn}"/>
+                    </p:column>   
+                   <p:column   >   
+                             <f:facet name="header">Tồn</f:facet>     
+                             <h:outputLabel value="#{item.shstondong}"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">Hoàn thành</f:facet>     
+                             <h:outputLabel value="#{item.hoanthanh}"/>
+                    </p:column>
+                </p:dataTable>      
+                       
+    </div>
+                        
+   </h:form>
+     </div>    
+</div>
+        
+    </ui:define>
+</ui:composition> 

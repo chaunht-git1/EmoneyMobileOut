@@ -1,0 +1,122 @@
+                                                                                                                                                   <ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough" template="/templates/default/main.xhtml">
+    <ui:define name="content"> 
+           <f:event listener="#{giaodichKhManagedBean.showdatagall()}" type="preRenderView" />
+        <div class="example">
+            <div class="container">
+                <div class="row ">
+                    <div class="form-group">
+                        <h:form>
+                            <div class="col-xs-6 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="indexchinha.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+                            <div class="col-xs-6 box">
+                                <h:commandLink id="btnsearch"
+                                               class="form-control"
+                                               action="#{giaodichKhManagedBean.showdatagall()}" 
+                                               styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    Tất cả
+                                </h:commandLink>
+                            </div>
+                            <hr/> 
+                        </h:form>
+
+                    </div>
+                    <div>
+                        <hr/>
+                    </div>
+              </div>
+                <div class="row" >
+                    <h:form>
+                        
+                            <div class="form-group">
+                                <h:selectOneMenu  id="noicap" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.loaitk}"  >
+                                    <f:selectItem   itemValue="00001" itemLabel="Số biên nhận" />
+                                    <f:selectItem   itemValue="00002" itemLabel="Mã người nhận" />
+                                    <f:selectItem   itemValue="00003" itemLabel="Số điện thoại" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText id="idkhachhang"  p:placeholder="Giá trị tìm kiếm"  value="#{giaodichKhManagedBean.makhachhangtk}" class="form-control" /> 
+                            </div>
+                            <div class="form-group">
+
+                            <h:commandLink id="btnsearch"
+                                           class="form-control"
+                                           action="#{giaodichKhManagedBean.timgiaodich()}"
+                                           styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Tìm thông tin
+                            </h:commandLink>
+                                
+                            </div>
+               
+
+                </h:form>
+                
+                </div>
+                <div class="row " >
+                    <div class="form-group">
+                       <hr class="divider"/> 
+                    </div>
+                    
+                    <ui:repeat var="o" value="#{giaodichKhManagedBean.dsgd}" varStatus="status">
+
+
+                    <div class="  form-group  ">
+                        <div class="form-inline form-group " >
+                            <h:outputLabel value= "#{status.index+1}"  style="border: 0px"/>
+                            <h:outputLabel value= "-"  style="border: 0px"/>
+                            <h:outputLabel value= "Trạng thái:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.dachitra}"   style="border: 0px"/>
+                        </div>    
+                        <div class="form-inline form-group" >
+                            <h:outputLabel value= "Số bn:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.sobn}"  style="border: 0px"/>
+                            <h:outputLabel value= "-"  style="border: 0px"/>
+                            <h:outputLabel value= "Mã số:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.maNguoinhan}"  style="border: 0px"/>
+                        </div>    
+                        <div class="form-inline" >
+                            <h:outputLabel value= "Đối tác:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.tenDoitac}"  style="border: 0px"/>
+                        </div>
+                        <div class="form-inline" >
+                            <h:outputLabel value= "Người nhận:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.hoten}"  style="border: 0px"/>
+                        </div>
+                        <div class="form-inline" >
+                            <h:outputLabel value= "Giấy tờ:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.tengiayto}"  style="border: 0px"/>
+                            <h:outputLabel value= "-"  style="border: 0px"/>
+                            <h:outputLabel value= " Số:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.soCtTuythan}"  style="border: 0px"/>
+                        </div>
+                        <div class="form-inline" >
+                            <h:outputLabel value= "Số tiền gởi:  "  style="border: 0px"/>
+                            <h:outputLabel value= "#{o.sotiengoi}"   style="border: 0px"/>
+                            <h:outputLabel value= "#{o.idLoaitienchitra}"   style="border: 0px"/> 
+                        </div> 
+                        <hr/>
+                    </div>
+
+                </ui:repeat>
+                </div>
+                
+                
+            </div>
+
+ 
+            </div>
+    </ui:define>
+</ui:composition> 

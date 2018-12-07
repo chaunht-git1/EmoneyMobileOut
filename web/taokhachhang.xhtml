@@ -1,0 +1,167 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough" template="/templates/default/main.xhtml"
+                >
+    <ui:define name="content">                        
+
+        <div class="row" >
+            <h:form>
+
+                <h:commandLink value="Trở về"/>
+
+
+                <div class="pull-right">
+
+                    <h:commandLink action="#{khachhangManagedBean.xacnhankhachhang()}" value="Chi tiết giao dịch"         />
+
+                </div>
+                <hr/> 
+            </h:form>
+
+        </div>
+ 
+        <div class="row" >
+            <div class="form-inline well well-sm">
+                           <label>Số CMND:</label>
+                           <h:form>
+                               <h:inputText id="cmndkt"  p:placeholder="Số Chứng Minh"  value="#{khachhangManagedBean.khachhangct.sochungminh}" class="form-control"  required="true" requiredMessage="CMND không để trống" /> 
+           
+                               <h:commandButton action="#{khachhangManagedBean.ktcmnd()}" value="Kiểm tra" class="btn btn-primary"     /> 
+                     
+                           </h:form>
+                          
+                        </div> 
+      
+        <div class="form-inline well well-sm">
+            <h:form>
+                <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+            <h:commandLink action="#{khachhangManagedBean.suakhachhang()}" value="Xem chi tiết" disabled="#{khachhangManagedBean.isDisKhtrung}"/>
+              
+            </h:form>
+            
+        </div>
+        <h:form>    
+        <div class="form-group"  > 
+            <div class="form-group">
+                      <div class="form-group well well-sm"  > 
+            <div class="form-group">
+                   <div class="form-group">
+                       <div class="form-group">
+                           <label  >Họ: </label> 
+                           <h:inputText id="hokh"  p:placeholder="Họ"  value="#{khachhangManagedBean.khachhangct.ho}" class="form-control" required="true" requiredMessage="Họ không để trống"  /> 
+    
+                       </div>
+                        <div class="form-group">
+                           <label>Tên:</label>
+                           <h:inputText id="tenkh"  p:placeholder="Tên"  value="#{khachhangManagedBean.khachhangct.ten}" class="form-control" required="true" requiredMessage="Tên không để trống"/> 
+                       </div>
+                        <div class="form-group">
+                           <label>Năm sinh:</label>
+                           <h:inputText id="namsinh"  p:placeholder="Năm sinh"  value="#{khachhangManagedBean.khachhangct.namsinh}" class="form-control" required="true" requiredMessage="Năm sinh không để trống" /> 
+                       </div>
+                        <div class="form-group">
+                           <label>Giới tính:</label>
+                          <h:selectOneMenu id="gioitinh" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangct.gioitinh}" required="true" requiredMessage="Chọn nơi cấp CMND" >
+                            <f:selectItem itemLabel="--Giới tính--"/>
+                            <f:selectItem itemLabel="Nam" itemValue="001003" />
+                            <f:selectItem itemLabel="Nữ" itemValue="002003" />
+                           </h:selectOneMenu>
+                       </div>
+                        <div class="form-group">
+                           <label>Số CMND:</label>
+                            <h:inputText id="cmnd"  p:placeholder="Số Chứng Minh"  value="#{khachhangManagedBean.khachhangct.sochungminh}" class="form-control"  required="true" requiredMessage="CMND không để trống" /> 
+                       </div>
+              
+                       <div class="form-group">
+                           <label>Ngày cấp CMND:</label>
+                           <h:inputText id="ngaycapcmnd"  p:placeholder="Ngày cấp CMND"  value="#{khachhangManagedBean.khachhangct.ngaycapCmnd}" class="form-control"  required="true" requiredMessage="Ngày cấp CMND không để trống" >
+                               <f:convertDateTime pattern="dd/M/YYYY"/>
+                           </h:inputText>    
+                       </div>
+                        <div class="form-group">
+                        <label>Nơi cấp CMND:</label>
+                        
+                        <h:selectOneMenu id="noicapcmnd" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangct.idNoicapcmnd}" required="true" requiredMessage="Chọn nơi cấp CMND" >
+                            <f:selectItem itemLabel="--Chọn nơi cấp--"/>
+                        <f:selectItems var="city" value="#{khachhangManagedBean.dscity}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" /> 	
+                        </h:selectOneMenu>
+                       </div>
+                         <div class="form-group">
+                           <label>Số GPLX</label>
+                            <h:inputText id="gplx"  p:placeholder="GPLX"  value="#{khachhangManagedBean.khachhangct.giayPlx}" class="form-control" /> 
+                       </div>
+                       <div class="form-group">
+                           <label>Ngày cấp</label>
+                           <h:inputText id="ngaycapgplx"  p:placeholder="Ngày cấp"  value="#{khachhangManagedBean.khachhangct.ngaycapGplx}" class="form-control" >
+                                <f:convertDateTime pattern="dd/M/YYYY"/>
+                           </h:inputText>
+                       </div>
+                       <div class="form-group">
+                        <label>Nơi cấp GPLX</label>
+                        <h:selectOneMenu id="noicapgplx" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangct.idNoicapgplx}" >
+                            <f:selectItem itemLabel="--Chọn nơi cấp--"/>
+                        <f:selectItems var="city" value="#{khachhangManagedBean.dscity}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" /> 	
+                        </h:selectOneMenu>
+                       </div>
+                       <div class="form-group">
+                           <label>Số Passport</label>
+                           <h:inputText id="passport"  p:placeholder="Passport"  value="#{khachhangManagedBean.khachhangct.passport}" class="form-control" /> 
+                       </div>
+                       <div class="form-group">
+                           <label>Di động 1</label>
+                           <h:inputText id="dienthoai"  p:placeholder="Di động 1"  value="#{khachhangManagedBean.khachhangct.didong1}" class="form-control"     /> 
+                       </div>
+                       <div class="form-group">
+                           <label>Di động 2</label>
+                           <h:inputText id="dienthoai2"  p:placeholder="Di động 2"  value="#{khachhangManagedBean.khachhangct.didong2}" class="form-control" /> 
+                       </div>
+                       <div class="form-group">
+                           <label>Điện thoại cố định (Mã vùng-Số điện thoại)</label>
+                           <h:inputText id="dienthoai3"  p:placeholder="Điện thoại bàn(Mã vùng-Số điện thoại)"  value="#{khachhangManagedBean.khachhangct.dienthoaiBan}" class="form-control" /> 
+                       </div>
+                       
+                       <div class="form-group">
+                           <label>Số nhà :(số nhà/tên đường-phường/xã)</label>
+                             <h:inputText id="sonha"  p:placeholder="Số nhà"  value="#{khachhangManagedBean.khachhangct.sonhaThuongtru}" class="form-control" /> 
+                       </div>
+                     
+                        <div class="form-group">
+                           <label>Tỉnh/Thành phố</label>
+                         <h:selectOneMenu id="thanhphoskh" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangct.thanhphoThuongtru}" required="true" requiredMessage="Chọn Thành phố/Tỉnh cư trú của khách hàng" >
+                          <f:selectItem itemLabel="--Chọn Tỉnh/Thành phố--"/>
+                          <f:selectItems var="city" value="#{khachhangManagedBean.dscity}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" /> 	
+                          <f:ajax event="change" listener="#{khachhangManagedBean.laydsquanhuyen()}" render="quantt"/>
+                        </h:selectOneMenu>
+                       </div>
+                        <div class="form-group">
+
+                   <label>Quận/Huyện</label>
+                   <h:selectOneMenu  id="quantt" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.khachhangct.quanThuongtru}"  >
+                        <f:selectItem itemLabel="--Chọn Quận/Huyện--"/>
+                        <f:selectItems var="district" value="#{khachhangManagedBean.dsquanhuyen}" itemValue="#{district.idDistrict}" itemLabel="#{district.districtName}" /> 
+                        </h:selectOneMenu>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <h:commandButton action="#{khachhangManagedBean.insertkhachhang()}" value="Lưu dữ liệu" class="btn btn-primary"     /> 
+                     
+             </div>   
+         
+       </div>
+           </div>
+      
+                    
+       </div>
+           </div>
+      
+                 
+        </h:form>
+        
+        </div>
+
+
+    </ui:define>
+</ui:composition> 

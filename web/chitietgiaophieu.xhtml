@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                
+                template="/templates/default/main.xhtml"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:define name="content">                        
+               
+        <div class="row ">
+            <div class="form-group">
+                <h:form>
+                    <div class="col-xs-12 box">
+                        <h:commandLink id="btnback"
+                                       class="form-control"
+                                       action="indexchinha.xhtml" 
+                                       styleClass="btn btn-default"  >
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Trở về
+                        </h:commandLink>
+                    </div>
+                    
+                    <hr/> 
+                </h:form>
+
+            </div>
+            <div>
+                <hr/>
+            </div>
+        </div>
+        <div class="row" >
+             <div class="form-group" >
+                 <h:outputLabel value= "Đối tác: #{chitragphieuManagedBean.giaodichchuagiaoct.tendoitac}"  style="border: 0px;width: 100%"/>
+                 <h:outputLabel value= "Mã biên nhận: #{chitragphieuManagedBean.giaodichchuagiaoct.maNguoinhan}"   style="border: 0px;width: 100%"/>
+                 <h:outputLabel value="Số biên nhận:#{chitragphieuManagedBean.giaodichchuagiaoct.sobn}" style="border: 0px;width: 100%"/> 
+                    <h:outputLabel value= "Số tiền: #{chitragphieuManagedBean.giaodichchuagiaoct.sotiengoi}-Tỷ giá:#{chitragphieuManagedBean.giaodichchuagiaoct.tygia}-Thành tiền :#{chitragphieuManagedBean.giaodichchuagiaoct.thanhtien}"  style="border: 0px;width: 100%"/> 
+                    <h:outputLabel value= "Nhân viên chi: #{chitragphieuManagedBean.giaodichchuagiaoct.idNvChitra}"  style="border: 0px;width: 100%"/>
+                    <h:outputLabel value= "Loại tiển chi: #{chitragphieuManagedBean.giaodichchuagiaoct.idLoaitienchitra}"  style="border: 0px;width: 100%"/>
+                    <h:outputLabel value= "Họ Tên: #{chitragphieuManagedBean.giaodichchuagiaoct.hoten}"    style="border: 0px;width: 100%"/>
+                    <h:outputLabel value= "Địa chỉ: #{chitragphieuManagedBean.giaodichchuagiaoct.diachi} - #{chitragphieuManagedBean.giaodichchuagiaoct.districtName} - #{chitragphieuManagedBean.giaodichchuagiaoct.cityName}"    style="border: 0px;width: 100%"/>
+                    <hr/>
+              </div>
+        </div>    
+                    
+        <div class="row " >
+               <div class="form-group" >  
+                   <h:form id="taogiaodich" >                  
+                       <div class="form-group">
+                       <h:selectOneMenu id="thanhphoskh" class="btn btn-default dropdown-toggle form-control"  value="#{chitragphieuManagedBean.giaodichchuagiaoct.idCity}" required="true" requiredMessage="Chọn Thành phố/Tỉnh " >
+                        <f:selectItem itemLabel="--Chọn Tỉnh/Thành phố--"/>
+                        <f:selectItems var="city" value="#{chitragphieuManagedBean.dscity}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" /> 	
+                        <f:ajax event="change" listener="#{chitragphieuManagedBean.laydsquanhuyen()}" render="quantt"/>
+                       </h:selectOneMenu>
+                       </div>
+                       <div class="form-group">
+                       <h:selectOneMenu  id="quantt" class="btn btn-default dropdown-toggle form-control"  value="#{chitragphieuManagedBean.giaodichchuagiaoct.idDistrict}"  >
+                        <f:selectItem itemLabel="--Chọn Quận/Huyện--"/>
+                        <f:selectItems var="district" value="#{chitragphieuManagedBean.dsquanhuyen}" itemValue="#{district.idDistrict}" itemLabel="#{district.districtName}" /> 
+                        <f:ajax event="change" listener="#{chitragphieuManagedBean.laynvchitra()}"  render="nhanvien"/>
+                    </h:selectOneMenu>
+                    </div>
+                       <div class="form-group">
+                     <h:selectOneMenu  id="nhanvien" class="btn btn-default dropdown-toggle form-control"  value="#{chitragphieuManagedBean.giaodichchuagiaoct.idNvChitra}"  >
+                        <f:selectItem itemLabel="--Chọn nhân viên--"/>
+                        
+                        <f:selectItems var="dsnv" value="#{chitragphieuManagedBean.dsNhnavienctWebs}" itemValue="#{dsnv.userId}" itemLabel="#{dsnv.userName}" /> 
+                    </h:selectOneMenu>
+                    </div>
+                     <div class="btn-group form-group">
+                         <h:commandButton action="#{chitragphieuManagedBean.capnhatttgdich()}" value="Cập nhật thông tin" class="btn btn-primary"     /> 
+                         <h:commandButton action="#{chitragphieuManagedBean.laytygiamoi()}" value="Lấy tỷ giá mới nhất" class="btn btn-success"     />   
+            
+                     </div>
+                            
+          
+                 </h:form>
+                   
+               </div>
+        </div>
+                       
+
+    </ui:define>
+</ui:composition> 

@@ -1,0 +1,129 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"  template="/templates/default/main.xhtml">
+    <ui:define name="content">  
+        
+        <f:event listener="#{solieutongManagedBean.isResetWhenPageLoad}" type="preRenderView" />
+         
+     
+        <div class="form-group">
+             <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+        </div>
+        
+        <div class="example">
+            <div class="container">
+  
+                <div class="row">
+                    <h:form>           
+                        <div class="col-xs-6 box">
+                            <h:commandLink id="btnback"
+                                           class="form-control"
+                                           action="indexchinha.xhtml" 
+                                           styleClass="btn btn-default"  >
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                Trở về
+                            </h:commandLink>
+                        </div>
+                        <div class="col-xs-6 box">
+                            
+                            <h:commandLink id="btnall"
+                                           class="form-control"
+                                           action="#{solieutongManagedBean.lammoiIndexChinha()}" 
+                                           styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Làm mới
+                            </h:commandLink>
+                        </div>
+                        <hr/> 
+                    </h:form>
+
+                </div>
+   
+                
+                <div class="row wellcustom blockquote">
+
+                    <h:form>
+
+                        <div class="form-group list-group  ">
+                            <a href="#" class="list-group-item tieudenho "  style="background-color: #23527c;color: white">Xác nhận thông tin</a>
+ 
+                            <div class="form-group ">
+
+                                <h:commandLink id="btncallkh"
+                                               action="#{khachhangManagedBean.chuyentranggdchuagoikhach()}"
+                                               class="form-control list-group-item tieudenho"
+                                                  styleClass="btn btn-default "
+                                               >
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    Chưa gọi khách
+                                    <span class="badge" style="background: white;color: red;font-weight: bold">#{solieutongManagedBean.dshosoGiaophieuTodayWebs.size()}</span>
+                                </h:commandLink>     
+
+                            </div>  
+                            <div class="form-group">
+
+                                <h:commandLink id="btnsearch"
+                                               action="gdxnnonametrongngay?faces-redirect=true"
+                                               class="form-control  list-group-item tieudenho"
+                                               styleClass="btn btn-default"
+                                               >
+                                    <i class="glyphicon glyphicon-search"></i>
+
+                                    Đã gọi khách
+                             
+                                    <span class="badge" style="background: white;color: red;font-weight: bold">#{solieutongManagedBean.dsgddaxacnhannoname.size()}</span>
+                                </h:commandLink>
+
+                            </div> 
+                             <a href="#" class="form-control  list-group-item tieudenho" style="background-color: #23527c;color: white">
+                               Hồi báo
+                             </a>
+                            <div class="form-group">
+
+                                <h:commandLink id="btndshshoibao"
+                                               action="#{chinhamainManagedBean.chuyentranghosochinhatrongngay()}"
+                                               class="form-control list-group-item tieudenho"
+                                                  styleClass="btn btn-default"
+                                                 >
+                                    <i class="glyphicon glyphicon-search"></i>
+
+                                    Giao dịch đã nhận tiền
+                                    <span  class="badge tieudenho" style="background: white;color: red;font-weight: bold">
+                                        #{solieutongManagedBean.dshosochoimp.size()}
+                                    </span>
+                                </h:commandLink>
+                                
+                                 <h:commandLink id="btndshshoibaobiennhan"
+                                               action="#{chinhamainManagedBean.chuyentrangdshshoibaonvchinha()}"
+                                               class="form-control list-group-item tieudenho"
+                                                  styleClass="btn btn-default"
+                                                 >
+                                    <i class="glyphicon glyphicon-search"></i>
+
+                                    Hồi báo biên nhận
+                                    <span  class="badge tieudenho" style="background: white;color: red;font-weight: bold">
+                                        #{solieutongManagedBean.dshosochoimp.size()}
+                                    </span>
+                                </h:commandLink>
+
+                            </div>   
+                        </div>  
+
+                    </h:form>
+                </div>
+            </div>
+
+        </div>
+        
+        <script type="text/javascript">
+           
+           
+           
+           
+        </script>
+                
+ 
+    </ui:define>
+</ui:composition> 

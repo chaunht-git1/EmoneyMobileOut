@@ -1,0 +1,156 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough" template="/templates/default/main.xhtml">
+    <ui:define name="content">                        
+        <div class="example">
+            <div class="container">
+                <div class="row ">
+                    <div class="form-group">
+                        <h:form>
+                            <div class="col-xs-6 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="indexchinha.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+                            <div class="col-xs-6 box">
+                                <h:commandLink id="btnsearch"
+                                               class="form-control"
+                                               action="#{chitragphieuManagedBean.showdatagdagpall}" 
+                                               styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    Tất cả
+                                </h:commandLink>
+                            </div>
+                            <hr/> 
+                        </h:form>
+
+                    </div>
+                    <div>
+                        <hr/>
+                    </div>
+              </div>
+                <div class="row" >
+                    <h:form>
+                        
+                            <div class="form-group">
+                                <h:selectOneMenu  id="noicap" class="btn btn-default dropdown-toggle form-control"  value="#{khachhangManagedBean.loaitk}"  >
+                                    <f:selectItem   itemValue="00001" itemLabel="Số biên nhận" />
+                                    <f:selectItem   itemValue="00002" itemLabel="Mã người nhận" />
+                                    <f:selectItem   itemValue="00003" itemLabel="Số điện thoại" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText id="idkhachhang"  p:placeholder="Giá trị tìm kiếm"  value="#{giaodichKhManagedBean.makhachhangtk}" class="form-control" /> 
+                            </div>
+                            <div class="form-group">
+
+                            <h:commandLink id="btnsearch"
+                                           class="form-control"
+                                           action="#{giaodichKhManagedBean.timgiaodich()}"
+                                           styleClass="btn btn-outline-primary" style="background-color: #23527c;color: white;float: right">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Tìm thông tin
+                            </h:commandLink>
+                                
+                            </div>
+               
+
+                </h:form>
+                
+                </div>
+               <h:form>
+             <div class="row">
+                 <h:outputLabel value="Số nhân viên :"/>
+                 <h:outputLabel value="#{chitragphieuManagedBean.dsgddagiao.size()}"/>
+                 
+                 <h:dataTable value="#{chitragphieuManagedBean.dsgddagiao}" var="data"
+                    styleClass="employeeTable"
+                    headerClass="employeeTableHeader"
+                    rowClasses="employeeTableOddRow,employeeTableEvenRow" class="table table-hover">
+                     <h:column>
+                          			
+                          <div class="form-group">
+                              <div class="form-group">
+                                    <h:outputLabel    value="Đối tác:"/>
+                                    <h:outputLabel value="#{data.tendoitac} "/>
+                              </div>
+                             <div class="form-group">
+                                  <h:outputLabel    value="Mã người nhận :"/>                                
+                                  <h:outputLabel  class="noidung" value="#{data.maNguoinhan}"/>
+                              </div>
+                              <div class="form-group">
+                                  <h:outputLabel   value="Họ tên :"/>
+                                  <h:outputLabel class="noidung"  value="#{data.hoten} "/>
+                              </div>
+                               <div class="form-group">
+                                  <h:outputLabel   value="Số tiền gởi:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.sotiengoi} "/>
+                              </div>
+                                <div class="form-group">
+                                  <h:outputLabel   value="Tỷ giá:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.tygia} "/>
+                              </div>
+                                <div class="form-group">
+                                  <h:outputLabel   value="Thành tiền:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.thanhtien} "/>
+                              </div>
+                               <div class="form-group">
+                                  <h:outputLabel   value="Loại tiền:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.idLoaitienchitra} "/>
+                              </div>
+                              <div class="form-group">
+                                  <h:outputLabel   value="Đã nhận phiếu:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.danhanphieu} "/>
+                              </div>
+                               <div class="form-group">
+                                  <h:outputLabel   value="Nhân viên chi trả:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.idNvChitra} "/>
+                              </div>
+                               <div class="form-group">
+                                  <h:outputLabel   value="Giao tự động:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.idGpAuto} "/>
+                              </div>
+                               <div class="form-group">
+                                  <h:outputLabel   value="Xác minh:"/>
+                                  <h:outputLabel class="noidung"  value="#{data.xacminh} "/>
+                              </div>
+                                <div class="form-group">
+                                  <h:outputLabel   value="Nội dung"/>
+                                  <h:outputLabel class="noidung_red"  value="#{data.ghichu} "/>
+                              </div>
+                               <div class="form-group">
+                                  <h:outputLabel   value="Ghi chú gửi:"/>
+                                  <h:outputLabel class="noidung_red"  value="#{data.ghichuGoi} "/>
+                              </div>
+                               
+      
+                               <div class="form-group">
+                                   <h:commandLink id="btngiaophieu"  action="#{chitragphieuManagedBean.chitiethsgiaophieutheonv()}" value="Chi tiết" disabled="true">
+                                            
+                               <f:setPropertyActionListener value="#{data}" target="#{chitragphieuManagedBean.gddagiaonv}"/>
+                                
+                            
+                            </h:commandLink>
+                               </div>
+                          </div>
+                     </h:column>
+                  
+                 </h:dataTable>
+    
+  
+        </div>
+        </h:form>
+                
+                
+            </div>
+
+ 
+            </div>
+    </ui:define>
+</ui:composition> 

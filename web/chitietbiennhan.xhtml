@@ -1,0 +1,205 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">     
+        <h:form>
+            <div class="container">
+                  <div class="row" >    
+                      <p:tabView  value="#{timkiemttbiennhanManagedBean.vwTkttMasters}" var="item"  >
+                        <p:tab title="#{item.hoten}">
+
+                            <p:tabView>
+                                <p:tab title="TTC(1)">
+
+                                    <p:panelGrid   >
+                                        <p:row>
+                                            <p:column>
+                                               <h:outputText class="noidungtieude" value="Chi nhánh:" />
+                                               <h:outputText value="#{item.chinhanhName}" />
+                                            </p:column>
+                                        </p:row>    
+                                         <p:row>
+                                            <p:column>
+                                                <h:outputText class="noidungtieude" value="Số biên nhận:" />
+                                                <h:outputText value="#{item.sobn}" />
+                                            </p:column>
+                                        </p:row> 
+                                        <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Đã chi trả:" />
+                                                 <h:outputText value="#{item.dachitra}" />
+                                            </p:column>
+                                        </p:row> 
+                                        <p:row>
+                                            <p:column>
+                                                <h:outputText class="noidungtieude" value="Họ tên:" />
+                                                <h:outputText value="#{item.hoten}" />
+                                            </p:column>
+                                        </p:row> 
+                                          <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Người gửi:" />
+                                                 <h:outputText class="noidungtieude" value="#{item.nguoigoi}" />
+                                            </p:column>
+                                        </p:row> 
+                                        <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Điện thoại:" />
+                                                 <h:outputText class="noidungtieude" value="#{item.dienthoai}" />
+                                            </p:column>
+                                        </p:row> 
+                                             <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Nhân viên:" />
+                                                 <h:outputText class="noidungtieude" value="#{item.idNvChitra}" />
+                                            </p:column>
+                                        </p:row> 
+                                        <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Ngày chi thực:" />
+                                                 <h:outputText class="noidung_red" value="#{item.ngayChitraTrue}" >
+                                                      <f:convertDateTime pattern = "dd-MM-yyyy HH:mm:ss" />
+                                                 </h:outputText>
+                                            </p:column>
+                                        </p:row> 
+                                        <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Ngày báo cáo:" />
+                                                 <h:outputText class="noidung_red" value="#{item.ngayChitra}" >
+                                                     <f:convertDateTime pattern = "dd-MM-yyyy" />
+                                                 </h:outputText>
+                                            </p:column>
+                                        </p:row> 
+                                          <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Nguyên tệ:" />
+                                                 <h:outputText class="noidung_red" value="#{item.sotiengoi}" />
+                                            </p:column>
+                                          </p:row>
+                                         <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Tỷ giá:" />
+                                                 <h:outputText class="noidung_red" value="#{item.tygia}" />
+                                            </p:column>
+                                          </p:row>
+                                        <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Thành tiền:" />
+                                                 <h:outputText class="noidung_red" value="#{item.thanhtien}" />
+                                            </p:column>
+                                          </p:row>
+                                          <p:row>
+                                            <p:column>
+                                                 <h:outputText class="noidungtieude" value="Tiền gửi:" />
+                                                 <h:outputText class="noidung_imp" value="#{item.idLoaitiengoi}" />
+                                                 -
+                                                    <h:outputText class="noidungtieude" value="T công nợ:" />
+                                                    <h:outputText class="noidung" value="#{item.idLoaicongno}" />
+                                                 -
+                                                    <h:outputText class="noidungtieude" value="Tiền CT:" />
+                                                    <h:outputText class="noidung_red" value="#{item.idLoaitienchitra}" />
+                                            </p:column>
+                                          </p:row>
+                                         <p:row>
+                                            <p:column>
+                                                <h:inputTextarea class="noidung form-control" rows="3" value="#{item.diachi}" />
+                                            </p:column>
+                                        </p:row> 
+                                        <p:row>
+                                            <p:column>
+                                                <h:outputText class="noidung"  value="Điểm CT:#{item.idDiadiemchitra}" />
+                                                -
+                                                <h:outputText  class="noidung"  value="Nhận Hs:#{item.danhanphieu}" />
+                                                -
+                                                <h:outputText  class="noidung"   value="CTV:#{item.congtacvien}" />
+                                            </p:column>
+                                        </p:row> 
+ 
+                                    </p:panelGrid>   
+                     
+                   
+                                </p:tab>
+                                <p:tab title="Xác minh">
+                                       <p:panelGrid   style="border-color: gainsboro;width:100%;" >
+                                         <p:row>                       
+                                            <p:column >
+                                                <h:outputText class="noidungtieude" value="Xác minh:" />
+                                                <h:outputText value="#{item.xacminh}" />
+                                            </p:column>
+                                                 <p:column >
+                                                <h:outputText class="noidungtieude" value="Ngày xác minh:" />
+                                                <h:outputText value="#{item.ngayXacminh}" />
+                                            </p:column>
+                                                 <p:column >
+                                                <h:outputText class="noidungtieude" value="Nhận viên :" />
+                                                <h:outputText value="#{item.idNvXacminh}" />
+                                            </p:column>
+                                        </p:row>   
+                                        <p:row>                       
+                                            <p:column colspan="4">
+                                                <h:outputText class="noidungtieude" value="Nội dung xm:" />
+                                                <h:outputText value="#{item.lydoXmnk}" />
+                                            </p:column>
+                                        </p:row>
+                                          
+                                            `
+                                       <p:row>                       
+              
+                                             <p:column colspan="4">
+                                                <h:outputText class="noidungtieude" value="Chi nhà nhập xm:" />
+                                                <h:outputText value="#{item.ghichu}" />
+                                            </p:column>
+                                        </p:row>
+                                        <p:row>
+                                            <p:column>
+                                                <h:outputText class="noidungtieude" value="Ngày nhập liệu:" />
+                                                <h:outputText value="#{item.ngayNhaplieu}" >
+                                                  
+                                                </h:outputText>     
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputText class="noidungtieude" value="Nơi nhận tiền:" />
+                                                <h:outputText value="#{item.noinhantien}" />
+                                            </p:column>
+                                            <p:column colspan="2">
+                                                <h:outputText class="noidungtieude" value="Ghi chú gửi:" />
+                                                <h:outputText value="#{item.ghichuGoi}" />
+                                            </p:column>
+                 
+                                        </p:row>
+                                        <p:row>
+                                            <p:column  >
+                                                <h:outputText class="noidungtieude" value="Ngày xóa:" />
+                                                <h:outputText value="#{item.ngayXoaphieu}" />
+                                            </p:column> 
+                                            <p:column colspan="2">
+                                                <h:outputText class="noidungtieude" value="Lý do xóa phiếu:" />
+                                                <h:outputText value="#{item.lydoxoaphieu}" />
+                                            </p:column> 
+                                        </p:row>
+                                       
+                                        
+                                  
+                                    </p:panelGrid>   
+
+                                </p:tab>
+                                <p:tab title="Biên nhận">
+                                    <p:graphicImage id="xembn"  value="DisplayImage?id=#{item.idCode}" style="width: 100%" />
+                                </p:tab>
+                            </p:tabView>
+
+                        </p:tab>
+                    </p:tabView>
+
+
+                </div>
+            </div>
+
+        </h:form>
+    </ui:define>
+</ui:composition> 
